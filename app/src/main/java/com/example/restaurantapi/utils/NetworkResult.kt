@@ -1,19 +1,19 @@
 package com.example.restaurantapi.utils
 
 
-sealed class NetworkResultt<T>(
+sealed class NetworkResult<T>(
     var data: T? = null,
     val message: String? = null
 ) {
 
-    class Success<T>(data: T) : NetworkResultt<T>(data)
+    class Success<T>(data: T) : NetworkResult<T>(data)
 
-    class Error<T>(message: String, data: T? = null) : NetworkResultt<T>(data, message)
+    class Error<T>(message: String, data: T? = null) : NetworkResult<T>(data, message)
 
-    class Loading<T> : NetworkResultt<T>()
+    class Loading<T> : NetworkResult<T>()
 
 
-    fun <R> map( transform :(data: T?) -> R) : NetworkResultt<R> =
+    fun <R> map( transform :(data: T?) -> R) : NetworkResult<R> =
         when(this){
             is Error -> Error(message!!,transform(data))
             is Loading -> Loading()

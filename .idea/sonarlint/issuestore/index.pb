@@ -1,0 +1,25 @@
+
+t
+Dapp/src/main/java/com/example/restaurantapi/framework/CustomerApp.kt,0\1\01f0ace601a61d15aa4f22ecbba15fb2d711e700
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+
+Oapp/src/main/java/com/example/restaurantapi/framework/pantallamain/MainState.kt,a\4\a4ab5e111b38914aa2b6512df30cc0bfd04f310b
+z
+Japp/src/main/java/com/example/restaurantapi/data/model/CustomerResponse.kt,e\4\e4c2652abb0108cec200e75992a6d8fba7aa2bba
+|
+Lapp/src/main/java/com/example/restaurantapi/data/sources/di/NetworkModule.kt,3\7\3769c2541c99d0212fabaf1384b18d721a23faef
+u
+Eapp/src/main/java/com/example/restaurantapi/domain/modelo/Customer.kt,e\e\eee66fada0d06b16fd4c25dfdb8edd58133e02e6
+ƒ
+Sapp/src/main/java/com/example/restaurantapi/data/sources/service/CustomerService.kt,7\e\7e51f69d804f0de2fcc80e186b85f1ef9d973865
+…
+Uapp/src/main/java/com/example/restaurantapi/framework/pantallamain/CustomerAdapter.kt,c\2\c21dd7cd85ab634c1be058de1e4e73d015d4ff59
+ƒ
+Sapp/src/main/java/com/example/restaurantapi/framework/pantallamain/MainViewModel.kt,1\7\17923740e534ed65caa87fc12aa91d1cf448ab41
+
+Oapp/src/main/java/com/example/restaurantapi/framework/pantallamain/MainEvent.kt,6\b\6bcf9bba6a2b2322ef1890ecff9983c7d9770d28
+w
+Gapp/src/main/java/com/example/restaurantapi/data/RepositoryCustomers.kt,e\f\ef56f622ca8e0bbfa97659b3a724da9e7034025e
+‚
+Rapp/src/main/java/com/example/restaurantapi/framework/pantallamain/MainActivity.kt,c\b\cb27055238775b06feb7dd445892396b588be3cd

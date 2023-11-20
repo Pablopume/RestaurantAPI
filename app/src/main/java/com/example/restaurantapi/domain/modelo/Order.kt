@@ -1,14 +1,15 @@
 package com.example.restaurantapi.domain.modelo
 
+import com.example.restaurantapi.data.model.OrderResponse
 import java.time.LocalDate
 
+data class Order (
+ val id: Int,
+ val customerId: Int,
+ val orderDate: LocalDate,
+ val tableId: Int,
+ @Transient  var isSelected: Boolean = false
+)
 
+fun Order.toOrderResponse() : OrderResponse = OrderResponse(id, customerId, orderDate.toString(), tableId )
 
-
-class Order {
-    private val id = 0
-    private val customerId = 0
-    private val orderDate: LocalDate? = null
-    private val tableId = 0
-
-}

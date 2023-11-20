@@ -1,7 +1,7 @@
 package com.example.restaurantapi.data.model
 
 import com.example.restaurantapi.domain.modelo.Customer
-import com.example.restaurantapi.utils.NetworkResultt
+import com.example.restaurantapi.utils.NetworkResult
 import com.google.gson.annotations.SerializedName
 import java.time.LocalDate
 
@@ -17,7 +17,7 @@ val email: String,
 @SerializedName("phone")
 val phone: String,
 @SerializedName("dob")
-val dob: String
+val dob: String,
 )
 
-fun CustomerResponse.toCustomer() : Customer = Customer(id, name, lastName, email, phone, dob)
+fun CustomerResponse.toCustomer() : Customer = Customer(id, name, lastName, email, phone,LocalDate.parse(dob) )

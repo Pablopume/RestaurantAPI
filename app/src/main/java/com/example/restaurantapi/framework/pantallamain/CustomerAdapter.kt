@@ -1,6 +1,7 @@
-package com.example.hiltmenu.ui.main
+package com.example.restaurantapi.framework.pantallamain
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.restaurantapi.R
 import com.example.restaurantapi.databinding.ViewCustomerBinding
 import com.example.restaurantapi.domain.modelo.Customer
-import com.example.restaurantapi.framework.pantallamain.SwipeGesture
+import com.example.restaurantapi.framework.pantallarorders.OrdersActivity
 
 
 class CustomerAdapter(
@@ -60,7 +61,14 @@ class CustomerAdapter(
     override fun onBindViewHolder(holder: ItemViewholder, position: Int) = with(holder) {
         val item = getItem(position)
         bind(item)
+        holder.itemView.setOnClickListener{
+            val context = it.context
+            val intent = Intent(context, OrdersActivity::class.java)
+            intent.putExtra("EXTRA_CUSTOMER_ID", item.id)
+            context.startActivity(intent)
+        }
     }
+
 
 
     inner class ItemViewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -71,13 +79,9 @@ class CustomerAdapter(
 
             itemView.setOnLongClickListener {
                 if (!selectedMode) {
-//                    selectedMode = true
+
                     actions.onStartSelectMode(item)
-//                    item.isSelected = true
-//                    binding.selected.isChecked = true
-                    //selectedPersonas.add(item)
-//                    notifyDataSetChanged()
-                    //notifyItemChanged(adapterPosition)
+
                 }
                 true
             }
@@ -88,15 +92,12 @@ class CustomerAdapter(
                         if (binding.selected.isChecked ) {
                             item.isSelected = true
                             itemView.setBackgroundColor(Color.GREEN)
-                            //binding.selected.isChecked = true
-                            //notifyItemChanged(adapterPosition)
                             selectedPersonas.add(item)
                         } else {
                             item.isSelected = false
                             itemView.setBackgroundColor(Color.WHITE)
                             selectedPersonas.remove(item)
-                            //binding.selected.isChecked = false
-                            //notifyItemChanged(adapterPosition)
+
 
                         }
                         actions.itemHasClicked(item)
@@ -135,35 +136,19 @@ class CustomerAdapter(
     }
 
     val swipeGesture = object : SwipeGesture(context) {
-//        override fun onMove(
-//            recyclerView: RecyclerView,
-//            viewHolder: RecyclerView.ViewHolder,
-//            target: RecyclerView.ViewHolder
-//        ): Boolean {
-//            var initPos = viewHolder.adapterPosition
-//            var targetPos = target.adapterPosition
-//
-//            val mutable = currentList.toMutableList()
-//            Collections.swap(mutable,initPos,targetPos)
-//
-//           // this@PersonaAdapter.submitList(mutable)
-//
-//            return false
-//
-//        }
 
-       override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-            //if (!selectedMode) {
-                when (direction) {
-                    ItemTouchHelper.LEFT -> {
-                        selectedPersonas.remove(currentList[viewHolder.adapterPosition])
-                        actions.onDelete(currentList[viewHolder.adapterPosition])
-                        if (selectedMode)
-                            actions.itemHasClicked(currentList[viewHolder.adapterPosition])
-                    }
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            when (direction) {
+                ItemTouchHelper.LEFT -> {
+                    val position = viewHolder.bindingAdapterPosition
+                    selectedPersonas.remove(currentList[position])
+                    actions.onDelete(currentList[position])
+                    if (selectedMode)
+                        actions.itemHasClicked(currentList[position])
                 }
-            //}
+            }
         }
+
     }
 
 

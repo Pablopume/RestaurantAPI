@@ -24,6 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name="com.example.restaurantapi.framework.pantallarorders.OrdersActivity"
+            />
     </application>
 
 </manifest>

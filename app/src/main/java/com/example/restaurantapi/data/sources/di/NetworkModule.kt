@@ -5,6 +5,7 @@ package com.example.restaurantapi.data.sources.di
 
 
 import com.example.restaurantapi.data.sources.service.CustomerService
+import com.example.restaurantapi.data.sources.service.OrderService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -46,7 +47,8 @@ object NetworkModule {
     @Provides
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
-        gsonConverterFactory: GsonConverterFactory
+        gsonConverterFactory: GsonConverterFactory,
+
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl("http://informatica.iesquevedo.es:2326/PabloSerrano/restaurant/")
@@ -59,5 +61,11 @@ object NetworkModule {
     @Provides
     fun provideCurrencyService(retrofit: Retrofit): CustomerService =
         retrofit.create(CustomerService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideOrderService(retrofit: Retrofit): OrderService =
+        retrofit.create(OrderService::class.java)
+
 
 }
