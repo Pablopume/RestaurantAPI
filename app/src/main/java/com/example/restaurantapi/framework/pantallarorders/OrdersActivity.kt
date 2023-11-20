@@ -35,7 +35,6 @@ class OrdersActivity: AppCompatActivity() {
         binding = ActivityOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //manejar los gestos de deslizamiento y longclick enviandolos al viewmodel
         customAdapter = OrderAdapter(this,
             object : OrderAdapter.PersonaActions {
                 override fun onDelete(order: Order) =
@@ -50,24 +49,21 @@ class OrdersActivity: AppCompatActivity() {
                     viewModel.handleEvent(OrderEvent.SelectOrder(order))
             })
 
-        //configurar el recyclerview
+
         binding.rvPersonas.adapter = customAdapter
         val touchHelper = ItemTouchHelper(customAdapter.swipeGesture)
         touchHelper.attachToRecyclerView(binding.rvPersonas)
 
-        //configurar el boton de recargar personas
 
-
-        //observar los cambios en el estado del viewmodel
         viewModel.uiState.observe(this) { state ->
-            //si la lista de personas cambia, se actualiza el adapter y se cambia en pantalla
+
             state.personas.let {
                 if (it.isNotEmpty()) {
                     customAdapter.submitList(it)
                 }
             }
 
-            //si la lista de personas seleccionadas cambia, se actualiza el adapter y se cambia en pantalla junto al titulo del actionmode
+
             state.personasSeleccionadas.let {
                 if (it.isNotEmpty()) {
                     customAdapter.setSelectedItems(it)
@@ -79,7 +75,7 @@ class OrdersActivity: AppCompatActivity() {
                 }
             }
 
-            //si el modo seleccion cambia, se llama al adapter para que cambie el modo seleccion
+
             state.selectMode.let { seleccionado ->
                 if (seleccionado) {
                     if (primeraVez) {
@@ -137,16 +133,6 @@ private fun add() {
 
         override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
             return when (item?.itemId) {
-                R.id.favorite -> {
-                    // Handle share icon press
-                    true
-                }
-
-                R.id.search -> {
-                    // Handle delete icon press
-                    true
-                }
-
                 R.id.more -> {
                     viewModel.handleEvent(OrderEvent.DeletePersonasSeleccionadas())
                     true
